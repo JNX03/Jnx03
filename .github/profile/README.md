@@ -1,0 +1,136 @@
+<!--
+This is the source-of-truth for the GitHub profile README.
+To deploy: copy this file to a repo named exactly `JNX03/JNX03` (https://github.com/JNX03/JNX03)
+as `README.md` in the repo root. GitHub will surface it on github.com/JNX03.
+-->
+
+<div align="center">
+
+# こんにちは、Jean です ／ Hi, I'm Jean
+
+### `JNX03` ／ Chawabhon Netisingha ／ ชวภณ เนติสิงหะ
+
+**Creative developer ／ AI · Security · Accessibility · Design**
+17 — based in Thailand 🇹🇭 — building things at [`dekport.com`](https://dekport.com)
+
+[![Portfolio](https://img.shields.io/badge/Portfolio-jnx03.xyz-1f5cff?style=for-the-badge&logoColor=white)](https://jnx03.xyz)
+[![Email](https://img.shields.io/badge/Email-contact@jnx03.xyz-ff2d3a?style=for-the-badge&logo=gmail&logoColor=white)](mailto:contact@jnx03.xyz)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-chawabhon--netisingha-0a66c2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/chawabhon-netisingha/)
+
+![Profile Views](https://komarev.com/ghpvc/?username=JNX03&style=for-the-badge&color=1f5cff&label=PROFILE+VIEWS)
+
+</div>
+
+---
+
+## ⌁ EP.01 — First Contact
+
+```ts
+const jean = {
+  pronouns: ["he", "him"],
+  status:   "M.6 — final year of high school",
+  school:   "The Prince Royal's College — Gifted Computer & Math",
+  founder:  "Dekport.com — student opportunity platform",
+  focus:    ["AI", "Accessibility", "Security research", "Design"],
+  awards:   18,
+  cves:     7,
+  current:  "Apple SSC 2026 Distinguished Winner — Neuralia",
+  motto:    "Build what you wish existed. Then ship it.",
+};
+```
+
+---
+
+## ⌁ EP.02 — Stack
+
+<div align="center">
+
+![Swift](https://img.shields.io/badge/Swift-FA7343?style=for-the-badge&logo=swift&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![SwiftUI](https://img.shields.io/badge/SwiftUI-0070C9?style=for-the-badge&logo=swift&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)
+![Tailwind](https://img.shields.io/badge/Tailwind-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Rust](https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white)
+![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=cplusplus&logoColor=white)
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
+
+</div>
+
+---
+
+## ⌁ EP.03 — Metrics
+
+<div align="center">
+
+<a href="https://github.com/JNX03">
+  <img height="180" src="https://github-readme-stats.vercel.app/api?username=JNX03&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0a1228&title_color=1f5cff&icon_color=4dd0ff&text_color=ffffff&include_all_commits=true&count_private=true" />
+  <img height="180" src="https://github-readme-streak-stats.herokuapp.com/?user=JNX03&theme=tokyonight&hide_border=true&background=0a1228&stroke=1f5cff&ring=1f5cff&fire=ff2d3a&currStreakLabel=4dd0ff" />
+</a>
+
+<a href="https://github.com/JNX03">
+  <img height="180" src="https://github-readme-stats.vercel.app/api/top-langs/?username=JNX03&layout=compact&theme=tokyonight&hide_border=true&bg_color=0a1228&title_color=1f5cff&text_color=ffffff&langs_count=10" />
+</a>
+
+<a href="https://github.com/JNX03">
+  <img src="https://github-profile-trophy.vercel.app/?username=JNX03&theme=tokyonight&no-frame=true&no-bg=true&column=7&margin-w=10" />
+</a>
+
+<a href="https://github.com/JNX03">
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=JNX03&theme=tokyo-night&hide_border=true&bg_color=0a1228&color=1f5cff&line=4dd0ff&point=ff2d3a&area=true" />
+</a>
+
+</div>
+
+---
+
+## ⌁ EP.04 — Selected Works
+
+| # | Project | Description | Year |
+|---|---------|-------------|------|
+| **PJ.01** | **[Neuralia](https://github.com/JNX03/Neuralia)** | Apple SSC 2026 Distinguished Winner — neural-network-themed Swift playground | 2026 |
+| **PJ.02** | **[Syntaxia](https://github.com/JNX03/Syntaxia)** | Apple SSC 2025 Winner — educational SwiftUI playground | 2025 |
+| **PJ.03** | **Eibraille** | CMKL AI Innovator 1st Place — AI-driven Braille assistive tool | 2024 |
+| **PJ.04** | **[Dekport.com](https://dekport.com)** | Founder — opportunity platform for Thai students | 2024 — Now |
+| **PJ.05** | **[VingVis](https://github.com/GCMinerva/VingVis)** | Visualization tooling for FTC robotics teams | Active |
+| **PJ.06** | **[ThaiFlickKeyboard](https://github.com/JNX03/ThaiFlickKeyboard)** | Flick-style IME for the Thai language | Active |
+| **PJ.07** | **[Flowtake](https://github.com/JNX03/Flowtake)** | Flow-based productivity / capture tool | Active |
+
+---
+
+## ⌁ EP.05 — Highlights
+
+- 🏆 **Apple Swift Student Challenge 2026** — Distinguished Winner (Neuralia)
+- 🏆 **Apple Swift Student Challenge 2025** — Winner (Syntaxia)
+- 🥇 **CMKL AI Innovator Award 2024** — 1st Place (Eibraille)
+- 🛡️ **7 published CVEs** (2026) — offensive security research
+- 📜 **Zenodo paper** — [DOI: 10.5281/zenodo.19472287](https://doi.org/10.5281/zenodo.19472287)
+- 🤖 **FTC / FLL / Kibo / PIM / Kamalasai** robotics finalist
+- 🌏 **APICTA 2023 Merit** — Asia-Pacific recognition
+- 🇹🇭 **Thailand Cyber Talent 2025** — finalist (Team Kernel)
+
+---
+
+## ⌁ EP.06 — Find Me
+
+<div align="center">
+
+[![GitHub](https://img.shields.io/badge/GitHub-@JNX03-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/JNX03)
+[![Instagram](https://img.shields.io/badge/Instagram-@jxxn03z-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/jxxn03z/)
+[![YouTube](https://img.shields.io/badge/YouTube-@Jnx03-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@Jnx03)
+[![Kaggle](https://img.shields.io/badge/Kaggle-jxxn03x-20BEFF?style=for-the-badge&logo=kaggle&logoColor=white)](https://www.kaggle.com/jxxn03x)
+[![Hugging Face](https://img.shields.io/badge/🤗_HuggingFace-Jnx03-FFD21E?style=for-the-badge&logoColor=black)](https://huggingface.co/Jnx03)
+
+</div>
+
+---
+
+<div align="center">
+
+`― これは、僕の物語 ―`
+**`Open for collaborations. Reply &lt; 24h.`**
+
+</div>
