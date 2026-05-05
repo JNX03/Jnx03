@@ -1,82 +1,84 @@
-import Image from "next/image";
-import ParallaxScene from "@/components/ParallaxScene";
-import CornerBadge from "@/components/CornerBadge";
-import NavBar from "@/components/NavBar";
-import Marquee from "@/components/Marquee";
-import ImagePlaceholder from "@/components/ImagePlaceholder";
+import Hero from "@/components/home/Hero";
+import FeaturedAwards from "@/components/home/FeaturedAwards";
+import FeaturedWorks from "@/components/home/FeaturedWorks";
+import DividerMarquee from "@/components/home/DividerMarquee";
+import NavLink from "@/components/layout/NavLink";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <main className="relative h-screen w-screen overflow-hidden bg-sky-200">
-      <CornerBadge label="TEXT" />
-      <NavBar />
+    <>
+      <Hero />
 
-      <ParallaxScene className="absolute inset-0">
-        <div
-          className="absolute inset-[-4%] transition-transform duration-300 ease-out"
-          data-depth="-0.16"
-          data-tilt="none"
-        >
-          <Image
-            src="/images/background.webp"
-            alt=""
-            fill
-            priority
-            sizes="108vw"
-            className="object-cover"
-          />
+      <section className="section-pad" style={{ background: "var(--paper)" }}>
+        <div className="container">
+          <div className="section-head reveal">
+            <div>
+              <div className="num">#01 / OVERVIEW</div>
+              <h2>
+                <span className="jp">主要受賞</span>HEADLINE
+              </h2>
+            </div>
+            <div className="meta">
+              FEATURED ／ 4 AWARDS
+              <br />
+              2024 — 2026
+            </div>
+          </div>
+
+          <FeaturedAwards />
+
+          <div style={{ textAlign: "center", marginTop: 48 }}>
+            <NavLink
+              href="/awards"
+              className="f-anton"
+              style={{
+                fontSize: 18,
+                letterSpacing: "0.25em",
+                borderBottom: "2px solid var(--accent)",
+                paddingBottom: 6,
+              }}
+            >
+              SEE ALL 18 AWARDS →
+            </NavLink>
+          </div>
         </div>
+      </section>
 
-        <div
-          className="absolute left-[11.2%] top-[32.1%] transition-transform duration-300 ease-out max-sm:left-[6%] max-sm:top-[22%] z-10"
-          data-depth="0.35"
-        >
-          <ImagePlaceholder size="sm" rotate={2} />
+      <DividerMarquee />
+
+      <section className="works section-pad">
+        <div className="container">
+          <div className="section-head reveal">
+            <div>
+              <div className="num" style={{ background: "var(--navy-deep)" }}>
+                #02 / WORKS
+              </div>
+              <h2>
+                <span className="jp">代表作</span>SELECTED WORKS
+              </h2>
+            </div>
+            <div className="meta">FEATURED 3 ／ SEE ALL →</div>
+          </div>
+
+          <FeaturedWorks />
+
+          <div style={{ textAlign: "center", marginTop: 48 }}>
+            <NavLink
+              href="/works"
+              className="f-anton"
+              style={{
+                fontSize: 18,
+                letterSpacing: "0.25em",
+                color: "#fff",
+                borderBottom: "2px solid var(--accent)",
+                paddingBottom: 6,
+              }}
+            >
+              VIEW ALL PROJECTS →
+            </NavLink>
+          </div>
         </div>
-
-        <div
-          className="absolute left-[36.1%] top-[33.4%] transition-transform duration-300 ease-out max-sm:left-auto max-sm:right-[6%] max-sm:top-[26%] z-10"
-          data-depth="0.5"
-        >
-          <ImagePlaceholder size="sm" rotate={10} />
-        </div>
-
-        <div
-          className="absolute left-[4.9%] top-[62.4%] transition-transform duration-300 ease-out max-sm:left-[8%] max-sm:top-[60%] z-10"
-          data-depth="0.4"
-        >
-          <ImagePlaceholder size="sm" rotate={-10} />
-        </div>
-
-        <div
-          className="absolute left-[12.8%] top-[40.6%] flex flex-col transition-transform duration-300 ease-out max-sm:hidden"
-          data-depth="0.55"
-        >
-          <span className="text-[clamp(3.7rem,5.15vw,5.35rem)] font-extrabold leading-[1.25] text-white drop-shadow-sm">
-            TEXT
-          </span>
-          <span className="text-[clamp(3.7rem,5.15vw,5.35rem)] font-extrabold leading-[1.05] text-white drop-shadow-sm">
-            TEXT
-          </span>
-        </div>
-
-        <div
-          className="absolute bottom-[10%] right-[8.8%] top-[16.5%] transition-transform duration-300 ease-out max-sm:inset-x-0 max-sm:right-auto max-sm:top-[16%] max-sm:bottom-[18%] max-sm:flex max-sm:justify-center"
-          data-depth="0.7"
-        >
-          <Image
-            src="/images/profile_human_nobackground.webp"
-            alt="Chawabhon Netisingha"
-            width={1024}
-            height={1024}
-            priority
-            className="h-full w-auto select-none object-contain drop-shadow-2xl max-sm:mx-auto"
-            draggable={false}
-          />
-        </div>
-      </ParallaxScene>
-
-      <Marquee text="SLIDE PROJECT INNOVATION" />
-    </main>
+      </section>
+    </>
   );
 }
