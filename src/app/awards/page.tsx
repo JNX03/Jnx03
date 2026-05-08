@@ -2,15 +2,76 @@ import type { Metadata } from "next";
 import PageHead from "@/components/page/PageHead";
 import AwardCard from "@/components/sections/AwardCard";
 import TimelineRow from "@/components/sections/TimelineRow";
-import { AWARDS, TIMELINE } from "@/lib/data";
+import JsonLd from "@/components/seo/JsonLd";
+import { AWARDS, SITE, TIMELINE } from "@/lib/data";
+import { SITE_URL, ogImage } from "@/lib/seo";
+
+const AWARDS_DESCRIPTION =
+  "18 awards across AI, software, robotics, accessibility, and security — from local Thai championships to Apple's Swift Student Challenge Distinguished Winner. Earned by Chawabhon Netisingha (JNX03).";
 
 export const metadata: Metadata = {
-  title: "JNX03 — Awards",
+  title: "Awards",
+  description: AWARDS_DESCRIPTION,
+  alternates: { canonical: "/awards" },
+  openGraph: {
+    type: "website",
+    title: "Awards ／ JNX03",
+    description: AWARDS_DESCRIPTION,
+    url: "/awards",
+    images: ogImage({ path: "/awards/opengraph-image" }),
+  },
+  twitter: {
+    title: "Awards ／ JNX03",
+    description: AWARDS_DESCRIPTION,
+    images: ogImage({ path: "/awards/opengraph-image" }),
+  },
+};
+
+const awardsItemListJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Awards earned by Chawabhon Netisingha (JNX03)",
+  description: AWARDS_DESCRIPTION,
+  url: `${SITE_URL}/awards`,
+  numberOfItems: AWARDS.length,
+  itemListElement: AWARDS.map((a, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    item: {
+      "@type": "Award",
+      name: a.title,
+      description: a.desc,
+      awardedBy: a.sub,
+      dateAwarded: a.yr,
+      ...(a.link ? { url: a.link } : {}),
+      recipient: {
+        "@type": "Person",
+        name: SITE.fullName,
+        url: SITE_URL,
+      },
+    },
+  })),
+};
+
+const collectionJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Awards ／ JNX03",
+  url: `${SITE_URL}/awards`,
+  description: AWARDS_DESCRIPTION,
+  hasPart: TIMELINE.map((t) => ({
+    "@type": "Event",
+    name: t.title,
+    startDate: t.yr,
+    description: t.desc,
+  })),
 };
 
 export default function AwardsPage() {
   return (
     <>
+      <JsonLd id="ld-awards-list" data={awardsItemListJsonLd} />
+      <JsonLd id="ld-awards-collection" data={collectionJsonLd} />
       <PageHead
         num="03"
         label="AWARDS"

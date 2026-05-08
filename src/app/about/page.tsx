@@ -1,14 +1,62 @@
 import type { Metadata } from "next";
 import PageHead from "@/components/page/PageHead";
 import ProfileCard from "@/components/sections/ProfileCard";
+import JsonLd from "@/components/seo/JsonLd";
+import { SITE } from "@/lib/data";
+import { SITE_URL, ogImage } from "@/lib/seo";
+
+const ABOUT_DESCRIPTION =
+  "About Chawabhon Netisingha (JNX03) — high-school developer from Thailand, M.6 at The Prince Royal's College. AI, accessibility, security research, and design — all in one workflow.";
 
 export const metadata: Metadata = {
-  title: "JNX03 — About",
+  title: "About",
+  description: ABOUT_DESCRIPTION,
+  alternates: { canonical: "/about" },
+  openGraph: {
+    type: "profile",
+    title: "About ／ JNX03",
+    description: ABOUT_DESCRIPTION,
+    url: "/about",
+    images: ogImage({ path: "/about/opengraph-image" }),
+  },
+  twitter: {
+    title: "About ／ JNX03",
+    description: ABOUT_DESCRIPTION,
+    images: ogImage({ path: "/about/opengraph-image" }),
+  },
+};
+
+const aboutJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  name: "About JNX03",
+  url: `${SITE_URL}/about`,
+  description: ABOUT_DESCRIPTION,
+  mainEntity: {
+    "@type": "Person",
+    name: SITE.fullName,
+    alternateName: [SITE.name, SITE.nickEn],
+    url: SITE_URL,
+    nationality: { "@type": "Country", name: "Thailand" },
+    alumniOf: {
+      "@type": "EducationalOrganization",
+      name: "The Prince Royal's College",
+    },
+    worksFor: {
+      "@type": "Organization",
+      name: SITE.startup.name,
+      url: SITE.startup.url,
+    },
+    sameAs: SITE.socials
+      .filter((s) => s.href.startsWith("http"))
+      .map((s) => s.href),
+  },
 };
 
 export default function AboutPage() {
   return (
     <>
+      <JsonLd id="ld-about" data={aboutJsonLd} />
       <PageHead
         num="02"
         label="ABOUT ME"

@@ -1,15 +1,62 @@
 import type { Metadata } from "next";
 import PageHead from "@/components/page/PageHead";
 import WorkRow from "@/components/sections/WorkRow";
-import { PROJECTS } from "@/lib/data";
+import JsonLd from "@/components/seo/JsonLd";
+import { PROJECTS, SITE } from "@/lib/data";
+import { SITE_URL, ogImage } from "@/lib/seo";
+
+const WORKS_DESCRIPTION =
+  "Selected works by Chawabhon Netisingha (JNX03): apps, tools, and a startup. Across SwiftUI, web, robotics tooling, and Thai language input — including Neuralia, Syntaxia, Eibraille, and Dekport.com.";
 
 export const metadata: Metadata = {
-  title: "JNX03 — Works",
+  title: "Works",
+  description: WORKS_DESCRIPTION,
+  alternates: { canonical: "/works" },
+  openGraph: {
+    type: "website",
+    title: "Works ／ JNX03",
+    description: WORKS_DESCRIPTION,
+    url: "/works",
+    images: ogImage({ path: "/works/opengraph-image" }),
+  },
+  twitter: {
+    title: "Works ／ JNX03",
+    description: WORKS_DESCRIPTION,
+    images: ogImage({ path: "/works/opengraph-image" }),
+  },
+};
+
+const worksJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Selected works by Chawabhon Netisingha (JNX03)",
+  description: WORKS_DESCRIPTION,
+  url: `${SITE_URL}/works`,
+  numberOfItems: PROJECTS.length,
+  itemListElement: PROJECTS.map((p, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    item: {
+      "@type": "CreativeWork",
+      name: p.title,
+      alternateName: p.jp,
+      description: p.desc,
+      keywords: p.tags.join(", "),
+      dateCreated: p.year,
+      ...(p.href ? { url: p.href } : {}),
+      creator: {
+        "@type": "Person",
+        name: SITE.fullName,
+        url: SITE_URL,
+      },
+    },
+  })),
 };
 
 export default function WorksPage() {
   return (
     <>
+      <JsonLd id="ld-works" data={worksJsonLd} />
       <PageHead
         num="04"
         label="WORKS"

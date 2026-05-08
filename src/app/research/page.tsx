@@ -1,15 +1,76 @@
 import type { Metadata } from "next";
 import PageHead from "@/components/page/PageHead";
 import CveCard from "@/components/sections/CveCard";
-import { CVES } from "@/lib/data";
+import JsonLd from "@/components/seo/JsonLd";
+import { CVES, SITE } from "@/lib/data";
+import { SITE_URL, ogImage } from "@/lib/seo";
+
+const RESEARCH_DESCRIPTION =
+  "Published security research and academic work by Chawabhon Netisingha (JNX03). 7 CVEs assigned in 2026, plus a peer-reviewed paper on Zenodo with permanent DOI.";
 
 export const metadata: Metadata = {
-  title: "JNX03 — Research",
+  title: "Research",
+  description: RESEARCH_DESCRIPTION,
+  alternates: { canonical: "/research" },
+  openGraph: {
+    type: "website",
+    title: "Research ／ JNX03",
+    description: RESEARCH_DESCRIPTION,
+    url: "/research",
+    images: ogImage({ path: "/research/opengraph-image" }),
+  },
+  twitter: {
+    title: "Research ／ JNX03",
+    description: RESEARCH_DESCRIPTION,
+    images: ogImage({ path: "/research/opengraph-image" }),
+  },
+};
+
+const cveListJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Published CVEs by JNX03",
+  description: RESEARCH_DESCRIPTION,
+  url: `${SITE_URL}/research`,
+  numberOfItems: CVES.length,
+  itemListElement: CVES.map((c, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    item: {
+      "@type": "TechArticle",
+      headline: c.id,
+      identifier: c.id,
+      description: c.desc,
+      url: `https://www.cve.org/CVERecord?id=${c.id}`,
+      author: {
+        "@type": "Person",
+        name: SITE.fullName,
+        url: SITE_URL,
+      },
+    },
+  })),
+};
+
+const paperJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  headline: "Published academic research (Zenodo)",
+  identifier: "10.5281/zenodo.19472287",
+  url: "https://doi.org/10.5281/zenodo.19472287",
+  datePublished: "2026",
+  author: {
+    "@type": "Person",
+    name: SITE.fullName,
+    url: SITE_URL,
+  },
+  publisher: { "@type": "Organization", name: "Zenodo" },
 };
 
 export default function ResearchPage() {
   return (
     <>
+      <JsonLd id="ld-research-cves" data={cveListJsonLd} />
+      <JsonLd id="ld-research-paper" data={paperJsonLd} />
       <PageHead
         num="05"
         label="RESEARCH"
