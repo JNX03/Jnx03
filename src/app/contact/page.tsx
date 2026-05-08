@@ -23,7 +23,7 @@ export default function ContactPage() {
         >
           <span>JNX03</span>
           <span>／</span>
-          <span style={{ color: "var(--accent)" }}>EP.06</span>
+          <span style={{ color: "var(--accent)" }}>CH.06</span>
           <span>／</span>
           <span>FINAL CONTACT</span>
         </div>

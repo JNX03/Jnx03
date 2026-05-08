@@ -2,12 +2,13 @@
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { JP_LABELS, NAV, type NavEntry } from "@/lib/nav";
+import { CHAPTER_KANJI, JP_LABELS, NAV, type NavEntry } from "@/lib/nav";
+
+type CurtainPhase = "idle" | "in" | "covered" | "out";
 
 type CurtainState = {
-  phase: "idle" | "in";
-  noTrans: boolean;
-  label: { num: string; text: string; jp: string };
+  phase: CurtainPhase;
+  label: { num: string; text: string; jp: string; kanji: string };
 };
 
 type CurtainContextValue = {
@@ -23,30 +24,36 @@ export function useCurtain() {
   return ctx;
 }
 
+const COVER_MS = 780;
+const REVEAL_MS = 1100;
+const SAFETY_MS = 1400;
+
 export default function CurtainProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
   const [state, setState] = useState<CurtainState>({
     phase: "idle",
-    noTrans: false,
-    label: { num: "EP.—", text: "LOADING", jp: "— 読込中 —" },
+    label: { num: "CH.—", text: "LOADING", jp: "― 読込中 ―", kanji: "章" },
   });
   const lastPathRef = useRef(pathname);
+  const incomingRef = useRef<CurtainState["label"] | null>(null);
 
   const play = useCallback(
     (href: string, navEntry?: NavEntry) => {
       const entry = navEntry ?? NAV.find((n) => n.href === href);
       const label = entry
         ? {
-            num: `EP.${entry.num}`,
+            num: `CH.${entry.num}`,
             text: entry.label,
             jp: JP_LABELS[entry.key],
+            kanji: CHAPTER_KANJI[entry.key],
           }
         : state.label;
-      setState({ phase: "in", noTrans: false, label });
+      incomingRef.current = label;
+      setState({ phase: "in", label });
       window.setTimeout(() => {
         router.push(href);
-      }, 550);
+      }, COVER_MS);
     },
     [router, state.label],
   );
@@ -54,11 +61,28 @@ export default function CurtainProvider({ children }: { children: React.ReactNod
   useEffect(() => {
     if (lastPathRef.current === pathname) return;
     lastPathRef.current = pathname;
-    setState((s) => ({ ...s, phase: "idle", noTrans: true }));
-    const id = window.requestAnimationFrame(() => {
-      setState((s) => ({ ...s, noTrans: false }));
+
+    const incoming = incomingRef.current ?? state.label;
+    incomingRef.current = null;
+
+    setState({ phase: "covered", label: incoming });
+    const r1 = window.requestAnimationFrame(() => {
+      const r2 = window.requestAnimationFrame(() => {
+        setState((s) => ({ ...s, phase: "out" }));
+        window.setTimeout(() => {
+          setState((s) => ({ ...s, phase: "idle" }));
+        }, REVEAL_MS);
+      });
+      void r2;
     });
-    return () => window.cancelAnimationFrame(id);
+    const safety = window.setTimeout(() => {
+      setState((s) => ({ ...s, phase: "idle" }));
+    }, SAFETY_MS);
+    return () => {
+      window.cancelAnimationFrame(r1);
+      window.clearTimeout(safety);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   const value = useMemo<CurtainContextValue>(() => ({ state, play }), [state, play]);

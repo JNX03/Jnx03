@@ -17,12 +17,21 @@ export const NAV: NavEntry[] = [
 ];
 
 export const JP_LABELS: Record<NavKey, string> = {
-  home: "— 表紙 —",
-  about: "— 人物紹介 —",
-  awards: "— 受賞歴 —",
-  works: "— 制作実績 —",
-  research: "— 研究 —",
-  contact: "— 連絡先 —",
+  home: "― 表紙 ―",
+  about: "― 人物紹介 ―",
+  awards: "― 受賞歴 ―",
+  works: "― 制作実績 ―",
+  research: "― 研究 ―",
+  contact: "― 連絡先 ―",
+};
+
+export const CHAPTER_KANJI: Record<NavKey, string> = {
+  home: "序",
+  about: "人",
+  awards: "賞",
+  works: "作",
+  research: "研",
+  contact: "信",
 };
 
 export const RAIL_THEME: Record<NavKey, "on-light" | "on-dark"> = {

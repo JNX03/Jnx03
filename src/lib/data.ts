@@ -340,10 +340,10 @@ export const TIMELINE: TimelineEntry[] = [
 ];
 
 export const TICKER_ITEMS: TickerItem[] = [
-  { ep: "EP.01", en: "FIRST CONTACT", jp: "初接触", img: "/assets/band-1.png", href: "/" },
-  { ep: "EP.02", en: "CHARACTER SHEET", jp: "人物紹介", img: "/assets/band-2.png", href: "/about" },
-  { ep: "EP.03", en: "TROPHY ROOM", jp: "受賞歴", img: "/assets/band-3.png", href: "/awards" },
-  { ep: "EP.04", en: "SELECTED WORKS", jp: "制作実績", img: "/assets/band-4.png", href: "/works" },
-  { ep: "EP.05", en: "FIELD NOTES", jp: "研究記録", img: "/assets/band-6.png", href: "/research" },
-  { ep: "EP.06", en: "TRANSMISSION", jp: "通信", img: "/assets/band-5.png", href: "/contact" },
+  { ep: "CH.01", en: "FIRST CONTACT", jp: "初接触", img: "/assets/band-1.png", href: "/" },
+  { ep: "CH.02", en: "CHARACTER SHEET", jp: "人物紹介", img: "/assets/band-2.png", href: "/about" },
+  { ep: "CH.03", en: "TROPHY ROOM", jp: "受賞歴", img: "/assets/band-3.png", href: "/awards" },
+  { ep: "CH.04", en: "SELECTED WORKS", jp: "制作実績", img: "/assets/band-4.png", href: "/works" },
+  { ep: "CH.05", en: "FIELD NOTES", jp: "研究記録", img: "/assets/band-6.png", href: "/research" },
+  { ep: "CH.06", en: "TRANSMISSION", jp: "通信", img: "/assets/band-5.png", href: "/contact" },
 ];

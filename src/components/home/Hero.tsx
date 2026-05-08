@@ -35,7 +35,7 @@ export default function Hero() {
       </div>
       <div className="corner-tr">
         <div className="f-mono" style={{ opacity: 0.7 }}>
-          EPISODE
+          CHAPTER
         </div>
         <div className="big">01</div>
         <div className="f-mono" style={{ opacity: 0.7 }}>

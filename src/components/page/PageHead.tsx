@@ -14,7 +14,7 @@ export default function PageHead({ num, label, jpLabel, ep, epLabel, lede }: Pro
         <div className="crumb">
           <span>JNX03</span>
           <span>／</span>
-          <span className="accent">EP.{ep}</span>
+          <span className="accent">CH.{ep}</span>
           <span>／</span>
           <span>{epLabel}</span>
         </div>
@@ -26,7 +26,7 @@ export default function PageHead({ num, label, jpLabel, ep, epLabel, lede }: Pro
         <span style={{ display: "none" }}>{num}</span>
       </div>
       <div className="ep">
-        <span>EPISODE</span>
+        <span>CHAPTER</span>
         <span className="big">{ep}</span>
         <span>&quot;{epLabel}&quot;</span>
       </div>

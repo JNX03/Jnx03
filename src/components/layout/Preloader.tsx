@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useSyncExternalStore } from "react";
 
-const TASKS = ["LOADING ASSETS", "BUILDING DOM", "SYNCING EPISODES", "RENDERING FRAMES", "READY"];
+const TASKS = ["LOADING ASSETS", "BUILDING DOM", "SYNCING CHAPTERS", "RENDERING FRAMES", "READY"];
 
 const subscribe = () => () => {};
 const getSnapshot = () => sessionStorage.getItem("jnx-loaded") === "1";
@@ -53,7 +53,7 @@ function PreloaderInner() {
   return (
     <div className={`preloader${hidden ? " hide" : ""}`} aria-hidden="true">
       <div className="corner-tl">JNX-03 ／ BOOT SEQUENCE ／ v2.0</div>
-      <div className="corner-br">PORTFOLIO ／ EP.01 — FIRST CONTACT</div>
+      <div className="corner-br">PORTFOLIO ／ CH.01 — FIRST CONTACT</div>
       <div className="pl-inner">
         <div className="logo">
           <span className="outline">JNX</span> <span className="accent">03</span>
@@ -69,7 +69,7 @@ function PreloaderInner() {
         <div className="meta">
           <span>FONTS</span>
           <span>TEXTURES</span>
-          <span>EPISODES</span>
+          <span>CHAPTERS</span>
           <span>READY</span>
         </div>
       </div>
