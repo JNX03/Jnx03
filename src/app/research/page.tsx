@@ -1,4 +1,4 @@
-import SubPage from "@/components/SubPage";
+﻿import SubPage from "@/components/SubPage";
 import { ItemList } from "@/components/ListPage";
 import JsonLd from "@/components/JsonLd";
 import { CVES, PAPER } from "@/lib/data";
@@ -28,7 +28,7 @@ const items = [
 
 export default function Research() {
   return (
-    <SubPage>
+    <SubPage current={PATH}>
       <ItemList items={items} />
       <JsonLd data={[breadcrumbs(TITLE, PATH), itemList(TITLE, items)]} />
     </SubPage>

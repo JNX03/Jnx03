@@ -1,0 +1,66 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches: [main]
+    # The metrics workflow commits these on a schedule; deploying on them
+    # would rebuild the site several times a day for no reason.
+    paths-ignore:
+      - "metrics*.svg"
+      - "README.md"
+      - ".github/workflows/metrics.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-vps
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build static export
+        run: npm run build
+
+      - name: Sanity-check the export
+        run: |
+          test -f out/index.html
+          for p in works awards research about stack contact; do
+            test -f "out/$p.html" || { echo "missing out/$p.html"; exit 1; }
+          done
+          echo "export looks complete: $(find out -type f | wc -l) files"
+
+      - name: Publish
+        env:
+          SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          HOST: ${{ secrets.VPS_HOST }}
+          USER: ${{ secrets.VPS_USER }}
+        run: |
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H "$HOST" >> ~/.ssh/known_hosts 2>/dev/null
+          # The key is pinned to a forced command on the server, so this pipe is
+          # the only thing it can do. No remote command is passed.
+          tar -czf - -C out . | ssh -o BatchMode=yes -i ~/.ssh/id_ed25519 "$USER@$HOST"
+
+      - name: Verify live site
+        run: |
+          fail=0
+          for p in / /works /awards /research /about /stack /contact /sitemap.xml; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "https://jnx03.xyz$p")
+            printf '  %-14s %s\n' "$p" "$code"
+            [ "$code" = "200" ] || fail=1
+          done
+          exit $fail

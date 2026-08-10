@@ -1,4 +1,4 @@
-import SubPage from "@/components/SubPage";
+﻿import SubPage from "@/components/SubPage";
 import JsonLd from "@/components/JsonLd";
 import Row from "@/components/Row";
 import { SITE, TIMELINE } from "@/lib/data";
@@ -12,7 +12,7 @@ export const metadata = pageMeta({ title: TITLE, description: DESCRIPTION, path:
 
 export default function About() {
   return (
-    <SubPage>
+    <SubPage current={PATH}>
       <div className="card card-prose">
         <p>
           <span className="ft">My name is Chawabhon Netisingha</span> — ชวภณ เนติสิงหะ, though

@@ -1,16 +1,21 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
-import Icon from "./Icon";
+import Nav from "./Nav";
 import Footer from "./Footer";
 
-export default function SubPage({ children }: { children: ReactNode }) {
+export default function SubPage({
+  current,
+  children,
+}: {
+  current?: string;
+  children: ReactNode;
+}) {
   return (
     <section className="page-sub">
       <div className="container">
         <div className="stack-lg">
-          <Link href="/" className="back">
-            <Icon name="arrowLeft" /> Back to Home
-          </Link>
+          <div className="card card-nav">
+            <Nav current={current} />
+          </div>
 
           {children}
 

@@ -1,4 +1,4 @@
-import SubPage from "@/components/SubPage";
+﻿import SubPage from "@/components/SubPage";
 import JsonLd from "@/components/JsonLd";
 import Row from "@/components/Row";
 import { SITE, SOCIALS } from "@/lib/data";
@@ -12,7 +12,7 @@ export const metadata = pageMeta({ title: TITLE, description: DESCRIPTION, path:
 
 export default function Contact() {
   return (
-    <SubPage>
+    <SubPage current={PATH}>
       <div className="card card-prose">
         <p>
           <span className="ft">Email is the surest way</span> to reach me, and I answer inside a

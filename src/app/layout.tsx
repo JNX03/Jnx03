@@ -89,6 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${geist.variable} ${thai.variable}`}>
       <body>
+        <div className="bg" aria-hidden="true" />
         <main>{children}</main>
         <JsonLd data={[person, website]} />
       </body>

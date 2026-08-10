@@ -1,4 +1,4 @@
-import SubPage from "@/components/SubPage";
+﻿import SubPage from "@/components/SubPage";
 import { ItemList } from "@/components/ListPage";
 import JsonLd from "@/components/JsonLd";
 import { PROJECTS } from "@/lib/data";
@@ -20,7 +20,7 @@ const items = PROJECTS.map((p) => ({
 
 export default function Works() {
   return (
-    <SubPage>
+    <SubPage current={PATH}>
       <ItemList items={items} />
       <JsonLd data={[breadcrumbs(TITLE, PATH), itemList(TITLE, items)]} />
     </SubPage>

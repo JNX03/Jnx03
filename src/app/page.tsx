@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Clock from "@/components/Clock";
 import Icon from "@/components/Icon";
+import Nav from "@/components/Nav";
 import Row from "@/components/Row";
 import Footer from "@/components/Footer";
-import { EXPERIENCE, PAGES } from "@/lib/data";
+import { EXPERIENCE } from "@/lib/data";
 
 export default function Home() {
   return (
@@ -117,12 +118,8 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="card card-list">
-                <div>
-                  {PAGES.map((p) => (
-                    <Row key={p.href} title={p.title} sub={p.sub} href={p.href} />
-                  ))}
-                </div>
+              <div className="card card-nav">
+                <Nav current="/" />
               </div>
 
               <div className="card card-cta">

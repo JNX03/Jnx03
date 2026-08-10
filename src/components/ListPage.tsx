@@ -22,9 +22,9 @@ export function ItemList({ items }: { items: Item[] }) {
   );
 }
 
-export default function ListPage({ items }: { items: Item[] }) {
+export default function ListPage({ items, current }: { items: Item[]; current?: string }) {
   return (
-    <SubPage>
+    <SubPage current={current}>
       <ItemList items={items} />
     </SubPage>
   );
