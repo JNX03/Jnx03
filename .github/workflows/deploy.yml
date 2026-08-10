@@ -83,15 +83,22 @@ jobs:
           exit 1
 
       - name: Verify live site
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
         run: |
-          # The origin/edge briefly 403s right after the file swap on the VPS
-          # (nginx reload, Cloudflare cache), so give each path a few retries
-          # before calling it a failure — mirrors the Publish step's pattern.
+          # Resolve straight to the VPS, bypassing Cloudflare: its edge
+          # blocks GitHub-hosted runners as datacenter traffic, which is a
+          # security setting unrelated to whether the publish landed
+          # correctly. Checking the origin is what this step actually
+          # cares about. Still retries — nginx needs a moment after the
+          # file swap — mirroring the Publish step's pattern.
           fail=0
           for p in / /works /awards /research /about /stack /contact /sitemap.xml; do
             code=""
             for attempt in 1 2 3 4 5; do
-              code=$(curl -s -o /dev/null -w '%{http_code}' "https://jnx03.xyz$p")
+              code=$(curl -s -o /dev/null -w '%{http_code}' \
+                --resolve "jnx03.xyz:443:$VPS_HOST" \
+                "https://jnx03.xyz$p")
               [ "$code" = "200" ] && break
               sleep 3
             done
