@@ -47,13 +47,40 @@ jobs:
           VPS_HOST: ${{ secrets.VPS_HOST }}
           VPS_USER: ${{ secrets.VPS_USER }}
         run: |
+          set -euo pipefail
+
           mkdir -p ~/.ssh && chmod 700 ~/.ssh
           printf '%s\n' "$SSH_KEY" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts 2>/dev/null
-          # The key is pinned to a forced command on the server, so this pipe is
-          # the only thing it can do. No remote command is passed.
-          tar -czf - -C out . | ssh -o BatchMode=yes -i ~/.ssh/id_ed25519 "$VPS_USER@$VPS_HOST"
+
+          # Fail loudly here rather than as an opaque ssh exit code later.
+          ssh-keygen -y -f ~/.ssh/id_ed25519 >/dev/null \
+            || { echo "VPS_SSH_KEY is not a valid private key"; exit 1; }
+
+          # Build the payload separately so a tar failure is never mistaken for
+          # an ssh failure the way it is inside a pipeline.
+          tar -czf /tmp/site.tar.gz -C out .
+          echo "payload $(du -h /tmp/site.tar.gz | cut -f1), $(tar -tzf /tmp/site.tar.gz | wc -l) entries"
+
+          # The key is pinned to a forced command server-side, so no remote
+          # command is passed; stdin is the whole interface.
+          for attempt in 1 2 3; do
+            echo "--- publish attempt $attempt ---"
+            if ssh -o BatchMode=yes \
+                   -o StrictHostKeyChecking=accept-new \
+                   -o ConnectTimeout=20 \
+                   -o ServerAliveInterval=10 \
+                   -i ~/.ssh/id_ed25519 \
+                   "$VPS_USER@$VPS_HOST" < /tmp/site.tar.gz; then
+              echo "published on attempt $attempt"
+              exit 0
+            fi
+            echo "attempt $attempt failed"
+            [ "$attempt" -lt 3 ] && sleep 15
+          done
+
+          echo "all three publish attempts failed"
+          exit 1
 
       - name: Verify live site
         run: |
