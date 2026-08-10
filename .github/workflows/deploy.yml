@@ -84,9 +84,17 @@ jobs:
 
       - name: Verify live site
         run: |
+          # The origin/edge briefly 403s right after the file swap on the VPS
+          # (nginx reload, Cloudflare cache), so give each path a few retries
+          # before calling it a failure — mirrors the Publish step's pattern.
           fail=0
           for p in / /works /awards /research /about /stack /contact /sitemap.xml; do
-            code=$(curl -s -o /dev/null -w '%{http_code}' "https://jnx03.xyz$p")
+            code=""
+            for attempt in 1 2 3 4 5; do
+              code=$(curl -s -o /dev/null -w '%{http_code}' "https://jnx03.xyz$p")
+              [ "$code" = "200" ] && break
+              sleep 3
+            done
             printf '  %-14s %s\n' "$p" "$code"
             [ "$code" = "200" ] || fail=1
           done
