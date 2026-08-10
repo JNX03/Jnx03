@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160" width="240" height="160" fill="none" stroke="#dcdcdc" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+  <!-- camera -->
+  <g transform="rotate(-13 62 58)">
+    <rect x="22" y="38" width="80" height="56" rx="10"/>
+    <path d="M46 38l8-11h16l8 11"/>
+    <circle cx="62" cy="66" r="15"/>
+  </g>
+
+  <!-- robot head -->
+  <g transform="rotate(9 168 52)">
+    <rect x="132" y="28" width="72" height="58" rx="12"/>
+    <path d="M168 28V14"/>
+    <circle cx="168" cy="10" r="5"/>
+    <path d="M152 52h4M180 52h4M154 70h28"/>
+  </g>
+
+  <!-- chip -->
+  <g transform="rotate(-6 128 128)">
+    <rect x="100" y="106" width="56" height="44" rx="8"/>
+    <path d="M114 106V96M142 106V96M114 150v10M142 150v10M100 122H90M100 136H90M156 122h10M156 136h10"/>
+  </g>
+</svg>

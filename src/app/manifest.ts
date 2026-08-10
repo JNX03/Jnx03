@@ -1,28 +1,15 @@
 import type { MetadataRoute } from "next";
-import {
-  BACKGROUND_COLOR,
-  DEFAULT_DESCRIPTION,
-  SITE_NAME,
-  THEME_COLOR,
-} from "@/lib/seo";
+import { SITE } from "@/lib/data";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "JNX03 — Chawabhon Netisingha",
-    short_name: SITE_NAME,
-    description: DEFAULT_DESCRIPTION,
+    name: `${SITE.fullName} — ${SITE.name}`,
+    short_name: SITE.name,
+    description: `${SITE.role} from ${SITE.base}.`,
     start_url: "/",
     display: "standalone",
-    background_color: BACKGROUND_COLOR,
-    theme_color: THEME_COLOR,
-    orientation: "portrait",
-    categories: ["portfolio", "personal", "developer"],
-    icons: [
-      {
-        src: "/favicon.ico",
-        sizes: "any",
-        type: "image/x-icon",
-      },
-    ],
+    background_color: "#fafafa",
+    theme_color: "#fafafa",
+    icons: [{ src: "/icon.svg", sizes: "any", type: "image/svg+xml" }],
   };
 }

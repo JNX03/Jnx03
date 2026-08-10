@@ -1,122 +1,136 @@
-import type { Metadata } from "next";
-import Hero from "@/components/home/Hero";
-import FeaturedAwards from "@/components/home/FeaturedAwards";
-import FeaturedWorks from "@/components/home/FeaturedWorks";
-import DividerMarquee from "@/components/home/DividerMarquee";
-import NavLink from "@/components/layout/NavLink";
-import JsonLd from "@/components/seo/JsonLd";
-import { SITE } from "@/lib/data";
-import { DEFAULT_DESCRIPTION, DEFAULT_TITLE, SITE_URL, ogImage } from "@/lib/seo";
+import Image from "next/image";
+import Link from "next/link";
+import Clock from "@/components/Clock";
+import Icon from "@/components/Icon";
+import Row from "@/components/Row";
+import Footer from "@/components/Footer";
+import { EXPERIENCE } from "@/lib/data";
 
-export const metadata: Metadata = {
-  title: {
-    absolute: DEFAULT_TITLE,
-  },
-  description: DEFAULT_DESCRIPTION,
-  alternates: { canonical: "/" },
-  openGraph: {
-    title: DEFAULT_TITLE,
-    description: DEFAULT_DESCRIPTION,
-    url: "/",
-    images: ogImage(),
-  },
-  twitter: {
-    title: DEFAULT_TITLE,
-    description: DEFAULT_DESCRIPTION,
-    images: ogImage(),
-  },
-};
-
-const homeJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "ProfilePage",
-  name: DEFAULT_TITLE,
-  url: SITE_URL,
-  description: DEFAULT_DESCRIPTION,
-  mainEntity: {
-    "@type": "Person",
-    name: SITE.fullName,
-    alternateName: SITE.name,
-    url: SITE_URL,
-  },
-};
-
-export default function HomePage() {
+export default function Home() {
   return (
-    <>
-      <JsonLd id="ld-home" data={homeJsonLd} />
-      <Hero />
+    <section className="page">
+      <div className="container rails" aria-hidden="true">
+        <span />
+        <span />
+      </div>
 
-      <section className="section-pad" style={{ background: "var(--paper)" }}>
-        <div className="container">
-          <div className="section-head reveal">
-            <div>
-              <div className="num">#01 / OVERVIEW</div>
-              <h2>
-                <span className="jp">主要受賞</span>HEADLINE
-              </h2>
-            </div>
-            <div className="meta">
-              FEATURED ／ 4 AWARDS
-              <br />
-              2024 — 2026
-            </div>
-          </div>
-
-          <FeaturedAwards />
-
-          <div style={{ textAlign: "center", marginTop: 48 }}>
-            <NavLink
-              href="/awards"
-              className="f-anton"
-              style={{
-                fontSize: 18,
-                letterSpacing: "0.25em",
-                borderBottom: "2px solid var(--accent)",
-                paddingBottom: 6,
-              }}
-            >
-              SEE ALL 18 AWARDS →
-            </NavLink>
-          </div>
-        </div>
-      </section>
-
-      <DividerMarquee />
-
-      <section className="works section-pad">
-        <div className="container">
-          <div className="section-head reveal">
-            <div>
-              <div className="num" style={{ background: "var(--navy-deep)" }}>
-                #02 / WORKS
+      <div className="stack">
+        <section id="header">
+          <div className="container">
+            <div className="footer-bar">
+              <div className="fi">
+                <div className="dot" />
+                Open for collaborations
               </div>
-              <h2>
-                <span className="jp">代表作</span>SELECTED WORKS
-              </h2>
+              <div className="fi tabular">
+                <Icon name="clock" />
+                <Clock />
+              </div>
             </div>
-            <div className="meta">FEATURED 3 ／ SEE ALL →</div>
           </div>
+        </section>
 
-          <FeaturedWorks />
+        <hr className="dash" />
 
-          <div style={{ textAlign: "center", marginTop: 48 }}>
-            <NavLink
-              href="/works"
-              className="f-anton"
-              style={{
-                fontSize: 18,
-                letterSpacing: "0.25em",
-                color: "#fff",
-                borderBottom: "2px solid var(--accent)",
-                paddingBottom: 6,
-              }}
-            >
-              VIEW ALL PROJECTS →
-            </NavLink>
+        <section id="introduction">
+          <div className="container">
+            <div className="card card-prose">
+              <p>
+                <span className="ft">I&rsquo;m a creative developer</span> that builds a little
+                of everything. My work spans AI, security research and accessibility, with
+                design somewhere in the middle.
+              </p>
+              <p>
+                Currently, I run a student platform at{" "}
+                <a className="tu" href="https://dekport.com" target="_blank" rel="noreferrer">
+                  Dekport
+                </a>{" "}
+                while finishing my final year at The Prince Royal&rsquo;s College.
+              </p>
+              <p>
+                Before that. Apple named me a{" "}
+                <a
+                  className="tu"
+                  href="https://github.com/JNX03/Neuralia"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Distinguished Winner
+                </a>{" "}
+                of the Swift Student Challenge
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
-    </>
+        </section>
+
+        <hr className="dash" />
+
+        <section id="information">
+          <div className="container">
+            <div className="grid6">
+              <div className="col-portrait">
+                <div className="portrait">
+                  <Image
+                    src="/assets/profile.webp"
+                    alt="card"
+                    fill
+                    sizes="(min-width: 640px) 220px, 100vw"
+                    priority
+                  />
+                </div>
+              </div>
+
+              <div className="col-list">
+                <div className="card card-list">
+                  <div>
+                    {EXPERIENCE.map((e) => (
+                      <Row
+                        key={e.title}
+                        title={e.title}
+                        sub={e.sub}
+                        meta={e.meta}
+                        href={e.href}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <hr className="dash" />
+
+        <section id="story">
+          <div className="container">
+            <div className="stack-sm">
+              <div className="card card-flush">
+                <div className="story">
+                  <div className="story-text">
+                    <span className="ft">When offline,</span> I compete in FTC robotics and
+                    take photographs I never get around to sorting. As someone who reads far
+                    too many papers, I occasionally indulge in breaking things to see how they
+                    were built.
+                  </div>
+                  <div className="story-art">
+                    <Image src="/assets/pattern.svg" alt="pattern" width={240} height={160} />
+                  </div>
+                </div>
+              </div>
+
+              <div className="card card-cta">
+                <Link href="/works">
+                  Go to <span className="ft">Selected Works</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <hr className="dash" />
+
+        <Footer />
+      </div>
+    </section>
   );
 }
