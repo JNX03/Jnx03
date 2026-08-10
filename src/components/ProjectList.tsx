@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import Icon from "./Icon";
 import type { Project } from "@/lib/data";
 
 export default function ProjectList({ projects }: { projects: Project[] }) {
@@ -32,8 +31,8 @@ function ProjectRow({ project, priority }: { project: Project; priority: boolean
           ))}
         </div>
       </div>
-      <div className="project-row-media">
-        {project.shot ? (
+      {project.shot && (
+        <div className="project-row-media">
           <Image
             src={project.shot}
             alt=""
@@ -42,12 +41,8 @@ function ProjectRow({ project, priority }: { project: Project; priority: boolean
             priority={priority}
             className="project-row-img"
           />
-        ) : (
-          <div className="project-row-icon">
-            {project.icon && <Icon name={project.icon} size="1.5rem" />}
-          </div>
-        )}
-      </div>
+        </div>
+      )}
     </>
   );
 

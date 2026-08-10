@@ -1,5 +1,3 @@
-import type { IconName } from "@/components/Icon";
-
 export const SITE = {
   name: "JNX03",
   fullName: "Chawabhon Netisingha",
@@ -84,9 +82,7 @@ export type Project = {
   tags: string[];
   year: string;
   href?: string;
-  /** Category icon shown when there's no live screenshot. */
-  icon?: IconName;
-  /** Screenshot of the live site, relative to /public. Takes priority over icon. */
+  /** Screenshot or illustration, relative to /public. */
   shot?: string;
 };
 
@@ -112,7 +108,7 @@ export const PROJECTS: Project[] = [
     desc: "AI-driven assistive technology for the visually impaired, translating between print and Braille. CMKL AI Innovator 1st Place.",
     tags: ["AI", "Assistive", "Computer vision"],
     year: "2024",
-    icon: "eye",
+    shot: "/assets/works/eibraille.svg",
   },
   {
     title: "Dekport",

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Noto_Sans_Thai } from "next/font/google";
 import JsonLd from "@/components/JsonLd";
+import EasterEgg from "@/components/EasterEgg";
 import { AWARDS, SITE, SOCIALS } from "@/lib/data";
 import "./globals.css";
 
@@ -35,7 +36,10 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: SITE.fullName, url: SITE.url }],
   creator: SITE.fullName,
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: "/",
+    types: { "application/atom+xml": "/atom.xml" },
+  },
   openGraph: {
     type: "website",
     siteName: SITE.name,
@@ -91,6 +95,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <div className="bg" aria-hidden="true" />
         <main>{children}</main>
+        <EasterEgg />
         <JsonLd data={[person, website]} />
       </body>
     </html>
