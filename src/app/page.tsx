@@ -4,6 +4,7 @@ import Icon from "@/components/Icon";
 import Nav from "@/components/Nav";
 import Row from "@/components/Row";
 import Footer from "@/components/Footer";
+import Search from "@/components/Search";
 import { EXPERIENCE } from "@/lib/data";
 
 export default function Home() {
@@ -22,9 +23,12 @@ export default function Home() {
                 <div className="dot" />
                 Open for collaborations
               </div>
-              <div className="fi tabular">
-                <Icon name="clock" />
-                <Clock />
+              <div className="fi">
+                <Search />
+                <div className="fi tabular">
+                  <Icon name="clock" />
+                  <Clock />
+                </div>
               </div>
             </div>
           </div>

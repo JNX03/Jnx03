@@ -19,10 +19,24 @@ export default function Clock() {
   const [time, setTime] = useState("");
 
   useEffect(() => {
-    // Polls faster than once a second so the first value lands quickly; React
-    // bails out of the re-render whenever the formatted string is unchanged.
-    const id = setInterval(() => setTime(now()), 250);
-    return () => clearInterval(id);
+    setTime(now());
+
+    // Align ticks to the real second boundary instead of polling several
+    // times a second — Intl formatting isn't free, and only the seconds
+    // digit ever changes, so anything faster than 1/sec is wasted work.
+    let interval: ReturnType<typeof setInterval>;
+    const timeout = setTimeout(
+      () => {
+        setTime(now());
+        interval = setInterval(() => setTime(now()), 1000);
+      },
+      1000 - (Date.now() % 1000)
+    );
+
+    return () => {
+      clearTimeout(timeout);
+      clearInterval(interval);
+    };
   }, []);
 
   return <span suppressHydrationWarning>{time}</span>;

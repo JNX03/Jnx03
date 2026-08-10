@@ -1,3 +1,5 @@
+import type { IconName } from "@/components/Icon";
+
 export const SITE = {
   name: "JNX03",
   fullName: "Chawabhon Netisingha",
@@ -82,6 +84,10 @@ export type Project = {
   tags: string[];
   year: string;
   href?: string;
+  /** Category icon shown when there's no live screenshot. */
+  icon?: IconName;
+  /** Screenshot of the live site, relative to /public. Takes priority over icon. */
+  shot?: string;
 };
 
 export const PROJECTS: Project[] = [
@@ -91,6 +97,7 @@ export const PROJECTS: Project[] = [
     tags: ["Swift", "AI", "WWDC26"],
     year: "2026",
     href: "https://github.com/JNX03/Neuralia",
+    shot: "/assets/works/neuralia.png",
   },
   {
     title: "Syntaxia",
@@ -98,12 +105,14 @@ export const PROJECTS: Project[] = [
     tags: ["Swift", "Education", "WWDC25"],
     year: "2025",
     href: "https://github.com/JNX03/Syntaxia",
+    shot: "/assets/works/syntaxia.png",
   },
   {
     title: "Eibraille",
     desc: "AI-driven assistive technology for the visually impaired, translating between print and Braille. CMKL AI Innovator 1st Place.",
     tags: ["AI", "Assistive", "Computer vision"],
     year: "2024",
+    icon: "eye",
   },
   {
     title: "Dekport",
@@ -111,6 +120,7 @@ export const PROJECTS: Project[] = [
     tags: ["Startup", "Web", "Education"],
     year: "2024 - Now",
     href: "https://dekport.com",
+    shot: "/assets/works/dekport.jpg",
   },
   {
     title: "VingVis",
@@ -118,6 +128,7 @@ export const PROJECTS: Project[] = [
     tags: ["Robotics", "Visualization", "FTC"],
     year: "Active",
     href: "https://github.com/GCMinerva/VingVis",
+    shot: "/assets/works/vingvis.png",
   },
   {
     title: "ThaiFlickKeyboard",
@@ -125,6 +136,7 @@ export const PROJECTS: Project[] = [
     tags: ["IME", "Thai", "Mobile"],
     year: "Active",
     href: "https://github.com/JNX03/ThaiFlickKeyboard",
+    shot: "/assets/works/thaiflickkeyboard.png",
   },
   {
     title: "Flowtake",
@@ -132,6 +144,7 @@ export const PROJECTS: Project[] = [
     tags: ["Productivity", "Tooling"],
     year: "Active",
     href: "https://github.com/JNX03/Flowtake",
+    shot: "/assets/works/flowtake.png",
   },
 ];
 

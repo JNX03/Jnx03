@@ -1,5 +1,5 @@
 ﻿import SubPage from "@/components/SubPage";
-import { ItemList } from "@/components/ListPage";
+import ProjectList from "@/components/ProjectList";
 import JsonLd from "@/components/JsonLd";
 import { PROJECTS } from "@/lib/data";
 import { breadcrumbs, itemList, pageMeta } from "@/lib/seo";
@@ -14,14 +14,13 @@ export const metadata = pageMeta({ title: TITLE, description: DESCRIPTION, path:
 const items = PROJECTS.map((p) => ({
   title: p.title,
   desc: p.desc,
-  meta: p.year,
   href: p.href,
 }));
 
 export default function Works() {
   return (
     <SubPage current={PATH}>
-      <ItemList items={items} />
+      <ProjectList projects={PROJECTS} />
       <JsonLd data={[breadcrumbs(TITLE, PATH), itemList(TITLE, items)]} />
     </SubPage>
   );
