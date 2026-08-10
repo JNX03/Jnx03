@@ -1,13 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Emits .next/standalone with a self-contained server.js for VPS hosting.
-  output: "standalone",
+  // Every route is prerendered, so the site ships as plain files in out/.
+  // That is what Cloudflare Pages serves.
+  output: "export",
   devIndicators: false,
   poweredByHeader: false,
-  compress: true,
   images: {
-    formats: ["image/avif", "image/webp"],
+    // No Node image optimizer exists on a static host.
+    unoptimized: true,
   },
   reactCompiler: true,
   turbopack: {
