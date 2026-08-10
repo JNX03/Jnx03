@@ -1,6 +1,5 @@
 import Link from "next/link";
-import Icon from "./Icon";
-import Footer from "./Footer";
+import SubPage from "./SubPage";
 
 export type Item = {
   title: string;
@@ -9,29 +8,25 @@ export type Item = {
   href?: string;
 };
 
+export function ItemList({ items }: { items: Item[] }) {
+  return (
+    <div className="card card-slim">
+      <ul className="list">
+        {items.map((item) => (
+          <li key={item.title}>
+            <Entry item={item} />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 export default function ListPage({ items }: { items: Item[] }) {
   return (
-    <section className="page-sub">
-      <div className="container">
-        <div className="stack-lg">
-          <Link href="/" className="back">
-            <Icon name="arrowLeft" /> Back to Home
-          </Link>
-
-          <div className="card card-slim">
-            <ul className="list">
-              {items.map((item) => (
-                <li key={item.title}>
-                  <Entry item={item} />
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <Footer bare />
-        </div>
-      </div>
-    </section>
+    <SubPage>
+      <ItemList items={items} />
+    </SubPage>
   );
 }
 

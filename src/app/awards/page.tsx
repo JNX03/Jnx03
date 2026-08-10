@@ -1,23 +1,28 @@
-import type { Metadata } from "next";
-import ListPage from "@/components/ListPage";
+import SubPage from "@/components/SubPage";
+import { ItemList } from "@/components/ListPage";
+import JsonLd from "@/components/JsonLd";
 import { AWARDS } from "@/lib/data";
+import { breadcrumbs, itemList, pageMeta } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Recognition",
-  description:
-    "Awards and recognition for Chawabhon Netisingha, including the Apple Swift Student Challenge, CMKL AI Innovator Award and APICTA.",
-  alternates: { canonical: "/awards" },
-};
+const TITLE = "Recognition";
+const PATH = "/awards";
+const DESCRIPTION =
+  "Awards and recognition for Chawabhon Netisingha, including the Apple Swift Student Challenge, the CMKL AI Innovator Award and APICTA.";
+
+export const metadata = pageMeta({ title: TITLE, description: DESCRIPTION, path: PATH });
+
+const items = AWARDS.map((a) => ({
+  title: a.title,
+  desc: `${a.place}. ${a.sub}`,
+  meta: a.year,
+  href: a.href,
+}));
 
 export default function Awards() {
   return (
-    <ListPage
-      items={AWARDS.map((a) => ({
-        title: a.title,
-        desc: `${a.place}. ${a.sub}`,
-        meta: a.year,
-        href: a.href,
-      }))}
-    />
+    <SubPage>
+      <ItemList items={items} />
+      <JsonLd data={[breadcrumbs(TITLE, PATH), itemList(TITLE, items)]} />
+    </SubPage>
   );
 }

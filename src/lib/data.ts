@@ -4,20 +4,37 @@ export const SITE = {
   thaiName: "ชวภณ เนติสิงหะ",
   nick: "Jean",
   role: "Creative developer",
+  age: 17,
   base: "Chiang Mai, Thailand",
   url: "https://jnx03.xyz",
   email: "contact@jnx03.xyz",
   timezone: "Asia/Bangkok",
 } as const;
 
-export type Social = { name: string; href: string };
+export type Social = { name: string; handle: string; href: string };
 
 export const SOCIALS: Social[] = [
-  { name: "Email", href: "mailto:contact@jnx03.xyz" },
-  { name: "GitHub", href: "https://github.com/JNX03" },
-  { name: "LinkedIn", href: "https://www.linkedin.com/in/chawabhon-netisingha/" },
-  { name: "Instagram", href: "https://www.instagram.com/jxxn03z/" },
-  { name: "YouTube", href: "https://www.youtube.com/@Jnx03" },
+  { name: "Email", handle: "contact@jnx03.xyz", href: "mailto:contact@jnx03.xyz" },
+  { name: "GitHub", handle: "@JNX03", href: "https://github.com/JNX03" },
+  {
+    name: "LinkedIn",
+    handle: "chawabhon-netisingha",
+    href: "https://www.linkedin.com/in/chawabhon-netisingha/",
+  },
+  { name: "Instagram", handle: "@jxxn03z", href: "https://www.instagram.com/jxxn03z/" },
+  { name: "YouTube", handle: "@Jnx03", href: "https://www.youtube.com/@Jnx03" },
+  { name: "Kaggle", handle: "jxxn03x", href: "https://www.kaggle.com/jxxn03x" },
+  { name: "Hugging Face", handle: "Jnx03", href: "https://huggingface.co/Jnx03" },
+];
+
+/** Home-page index. Also drives the sitemap. */
+export const PAGES: { title: string; sub: string; href: string }[] = [
+  { title: "Selected Works", sub: "Seven projects, and what each one taught me", href: "/works" },
+  { title: "Recognition", sub: "Eighteen awards across AI, robotics and software", href: "/awards" },
+  { title: "Research", sub: "Seven published CVEs and a Zenodo paper", href: "/research" },
+  { title: "About", sub: "The longer version, and a timeline", href: "/about" },
+  { title: "Stack", sub: "What I actually build with", href: "/stack" },
+  { title: "Contact", sub: "Email, and everywhere else I am", href: "/contact" },
 ];
 
 export type Row = {
@@ -247,6 +264,55 @@ export const CVES = [
   "CVE-2026-4607",
   "CVE-2026-5694",
   "CVE-2026-34891",
+];
+
+export type TimelineEntry = {
+  year: string;
+  title: string;
+  desc: string;
+};
+
+export const TIMELINE: TimelineEntry[] = [
+  {
+    year: "2014",
+    title: "Entered The Prince Royal's College",
+    desc: "Started in the Gifted Computer and Gifted Math programme.",
+  },
+  {
+    year: "2023",
+    title: "Brighton, United Kingdom",
+    desc: "Language studies at Brighton Language College, March to April.",
+  },
+  {
+    year: "2023",
+    title: "APICTA Merit, international",
+    desc: "First recognition outside Thailand, at the Asia Pacific ICT Alliance awards.",
+  },
+  {
+    year: "2024",
+    title: "Founded Dekport and won CMKL 1st",
+    desc: "Launched the startup, and took first place at the CMKL AI Innovator Award for Eibraille.",
+  },
+  {
+    year: "2025",
+    title: "Swift Student Challenge Winner",
+    desc: "Selected among 350 winners worldwide for Syntaxia.",
+  },
+  {
+    year: "2026",
+    title: "Distinguished Winner, and now",
+    desc: "Apple's top tier for Neuralia. Currently in M.6, looking at what comes after.",
+  },
+];
+
+export type StackGroup = { group: string; items: string[] };
+
+export const STACK: StackGroup[] = [
+  { group: "Languages", items: ["Swift", "Python", "TypeScript", "Rust", "C++"] },
+  { group: "AI", items: ["PyTorch", "TensorFlow", "Hugging Face", "scikit-learn"] },
+  { group: "Web", items: ["Next.js", "React", "Tailwind CSS", "Node.js"] },
+  { group: "Apple", items: ["SwiftUI", "Swift Playgrounds", "Xcode"] },
+  { group: "Tooling", items: ["Linux", "Docker", "Git", "nginx"] },
 ];
 
 export const PAPER = {

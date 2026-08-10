@@ -24,6 +24,13 @@ const PATHS = {
     "M2 8a4 4 0 0 1 4-4h12a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4h-12a4 4 0 0 1-4-4z",
     "M10 9l5 3l-5 3z",
   ],
+  kaggle: ["M7 3v18", "M17 5l-8 8l8 8"],
+  huggingface: [
+    "M12 3a9 9 0 1 0 0 18a9 9 0 0 0 0-18",
+    "M9 10v.01",
+    "M15 10v.01",
+    "M8.5 14a4 4 0 0 0 7 0",
+  ],
 } as const;
 
 export type IconName = keyof typeof PATHS;

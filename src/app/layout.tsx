@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Noto_Sans_Thai } from "next/font/google";
-import { SITE, SOCIALS } from "@/lib/data";
+import JsonLd from "@/components/JsonLd";
+import { AWARDS, SITE, SOCIALS } from "@/lib/data";
 import "./globals.css";
 
 const geist = Geist({
@@ -49,16 +50,39 @@ export const viewport: Viewport = {
   themeColor: "#fafafa",
 };
 
-const jsonLd = {
+const person = {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": `${SITE.url}#person`,
   name: SITE.fullName,
   alternateName: [SITE.name, SITE.nick, SITE.thaiName],
   url: SITE.url,
   email: SITE.email,
   jobTitle: SITE.role,
-  address: { "@type": "PostalAddress", addressLocality: SITE.base },
+  nationality: "Thai",
+  address: { "@type": "PostalAddress", addressLocality: SITE.base, addressCountry: "TH" },
+  alumniOf: { "@type": "EducationalOrganization", name: "The Prince Royal's College" },
+  worksFor: { "@type": "Organization", name: "Dekport", url: "https://dekport.com" },
+  knowsAbout: [
+    "Artificial intelligence",
+    "Machine learning",
+    "Security research",
+    "Accessibility",
+    "Swift",
+    "Robotics",
+  ],
+  award: AWARDS.slice(0, 6).map((a) => `${a.title} — ${a.place}`),
   sameAs: SOCIALS.filter((s) => s.href.startsWith("http")).map((s) => s.href),
+};
+
+const website = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${SITE.url}#website`,
+  url: SITE.url,
+  name: `${SITE.fullName} — ${SITE.name}`,
+  inLanguage: "en",
+  publisher: { "@id": `${SITE.url}#person` },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -66,10 +90,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${geist.variable} ${thai.variable}`}>
       <body>
         <main>{children}</main>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <JsonLd data={[person, website]} />
       </body>
     </html>
   );

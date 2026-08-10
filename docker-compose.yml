@@ -1,0 +1,17 @@
+services:
+  web:
+    build: .
+    image: jnx03-site
+    container_name: jnx03-site
+    restart: unless-stopped
+    # Bound to loopback only; nginx on the host terminates TLS and proxies in.
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      NODE_ENV: production
+      NEXT_TELEMETRY_DISABLED: "1"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
