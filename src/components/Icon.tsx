@@ -32,11 +32,22 @@ const PATHS = {
     "M8.5 14a4 4 0 0 0 7 0",
   ],
   search: ["M11 19a8 8 0 1 0 0-16a8 8 0 0 0 0 16", "M21 21l-4.35-4.35"],
+  file: ["M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z", "M14 2v5h5"],
+  box: ["M21 8l-9-5-9 5 9 5 9-5z", "M3 8v8l9 5 9-5V8", "M12 13v8"],
+  arrowRight: ["M5 12l14 0", "M15 12l-4 4", "M15 12l-4-4"],
 } as const;
 
 export type IconName = keyof typeof PATHS;
 
-export default function Icon({ name, size = "1.1rem" }: { name: IconName; size?: string }) {
+export default function Icon({
+  name,
+  size = "1.1rem",
+  className,
+}: {
+  name: IconName;
+  size?: string;
+  className?: string;
+}) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -49,6 +60,7 @@ export default function Icon({ name, size = "1.1rem" }: { name: IconName; size?:
       strokeLinejoin="round"
       strokeWidth="2"
       aria-hidden="true"
+      className={className}
     >
       {PATHS[name].map((d) => (
         <path key={d} d={d} />

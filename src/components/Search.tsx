@@ -144,39 +144,48 @@ export default function Search() {
             {query && (
               <div className="search-results" id="search-listbox" role="listbox">
                 {results.length > 0 ? (
-                  results.map((result, i) =>
-                    result.href.startsWith("/") ? (
-                      <Link
-                        key={result.href}
-                        href={result.href}
-                        className="search-result"
-                        role="option"
-                        aria-selected={i === active}
-                        onMouseEnter={() => setActive(i)}
-                        onClick={() => setIsOpen(false)}
-                      >
+                  results.map((result, i) => {
+                    const content = (
+                      <>
+                        <Icon
+                          name={result.type === "page" ? "file" : "box"}
+                          size="0.9rem"
+                        />
                         <span className="result-type">{result.type}</span>
                         <span className="result-title">{result.title}</span>
+                        <Icon name="arrowRight" size="0.9rem" className="result-arrow" />
+                      </>
+                    );
+                    const rowProps = {
+                      className: "search-result",
+                      role: "option" as const,
+                      "aria-selected": i === active,
+                      onMouseEnter: () => setActive(i),
+                      onClick: () => setIsOpen(false),
+                      style: { animationDelay: `${i * 25}ms` },
+                    };
+
+                    return result.href.startsWith("/") ? (
+                      <Link key={result.href} href={result.href} {...rowProps}>
+                        {content}
                       </Link>
                     ) : (
                       <a
                         key={result.href}
                         href={result.href}
-                        className="search-result"
-                        role="option"
-                        aria-selected={i === active}
-                        onMouseEnter={() => setActive(i)}
-                        onClick={() => setIsOpen(false)}
                         target="_blank"
                         rel="noreferrer"
+                        {...rowProps}
                       >
-                        <span className="result-type">{result.type}</span>
-                        <span className="result-title">{result.title}</span>
+                        {content}
                       </a>
-                    )
-                  )
+                    );
+                  })
                 ) : (
-                  <div className="search-empty">No results found</div>
+                  <div className="search-empty">
+                    <Icon name="search" size="1.25rem" />
+                    No results found
+                  </div>
                 )}
               </div>
             )}
