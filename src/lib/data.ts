@@ -32,6 +32,7 @@ export const PAGES: { title: string; sub: string; href: string }[] = [
   { title: "Selected Works", sub: "Seven projects, and what each one taught me", href: "/works" },
   { title: "Recognition", sub: "Eighteen awards across AI, robotics and software", href: "/awards" },
   { title: "Research", sub: "Seven published CVEs and a Zenodo paper", href: "/research" },
+  { title: "Blog", sub: "Longer write-ups, starting with three days at Apple Park", href: "/blog" },
   { title: "About", sub: "The longer version, and a timeline", href: "/about" },
   { title: "Stack", sub: "What I actually build with", href: "/stack" },
   { title: "Contact", sub: "Email, and everywhere else I am", href: "/contact" },
@@ -84,6 +85,8 @@ export type Project = {
   href?: string;
   /** Screenshot or illustration, relative to /public. */
   shot?: string;
+  /** Alt text for `shot`. Required whenever `shot` is set. */
+  alt?: string;
 };
 
 export const PROJECTS: Project[] = [
@@ -93,7 +96,8 @@ export const PROJECTS: Project[] = [
     tags: ["Swift", "AI", "WWDC26"],
     year: "2026",
     href: "https://github.com/JNX03/Neuralia",
-    shot: "/assets/works/neuralia.png",
+    shot: "/assets/works/neuralia.webp",
+    alt: "GitHub repository card for JNX03/Neuralia, the WWDC26 Swift Student Challenge Distinguished Winner submission",
   },
   {
     title: "Syntaxia",
@@ -101,7 +105,8 @@ export const PROJECTS: Project[] = [
     tags: ["Swift", "Education", "WWDC25"],
     year: "2025",
     href: "https://github.com/JNX03/Syntaxia",
-    shot: "/assets/works/syntaxia.png",
+    shot: "/assets/works/syntaxia.webp",
+    alt: "GitHub repository card for JNX03/Syntaxia, the WWDC25 Swift Student Challenge winning submission",
   },
   {
     title: "Eibraille",
@@ -109,6 +114,7 @@ export const PROJECTS: Project[] = [
     tags: ["AI", "Assistive", "Computer vision"],
     year: "2024",
     shot: "/assets/works/eibraille.svg",
+    alt: "Line icon of an eye beside a braille cell, representing Eibraille's print-to-braille translation",
   },
   {
     title: "Dekport",
@@ -116,7 +122,8 @@ export const PROJECTS: Project[] = [
     tags: ["Startup", "Web", "Education"],
     year: "2024 - Now",
     href: "https://dekport.com",
-    shot: "/assets/works/dekport.jpg",
+    shot: "/assets/works/dekport.webp",
+    alt: "Screenshot of the DekPort.com homepage, an opportunity platform for Thai students",
   },
   {
     title: "VingVis",
@@ -124,7 +131,8 @@ export const PROJECTS: Project[] = [
     tags: ["Robotics", "Visualization", "FTC"],
     year: "Active",
     href: "https://github.com/GCMinerva/VingVis",
-    shot: "/assets/works/vingvis.png",
+    shot: "/assets/works/vingvis.webp",
+    alt: "GitHub repository card for GCMinerva/VingVis, a path-follower and robot management tool for FTC robotics",
   },
   {
     title: "ThaiFlickKeyboard",
@@ -132,7 +140,8 @@ export const PROJECTS: Project[] = [
     tags: ["IME", "Thai", "Mobile"],
     year: "Active",
     href: "https://github.com/JNX03/ThaiFlickKeyboard",
-    shot: "/assets/works/thaiflickkeyboard.png",
+    shot: "/assets/works/thaiflickkeyboard.webp",
+    alt: "GitHub repository card for JNX03/ThaiFlickKeyboard, a flick-style keyboard layout for Thai",
   },
   {
     title: "Flowtake",
@@ -140,7 +149,14 @@ export const PROJECTS: Project[] = [
     tags: ["Productivity", "Tooling"],
     year: "Active",
     href: "https://github.com/JNX03/Flowtake",
-    shot: "/assets/works/flowtake.png",
+    shot: "/assets/works/flowtake.webp",
+    alt: "GitHub repository card for JNX03/Flowtake, an open-source local-first screen recorder and timeline editor",
+  },
+  {
+    title: "ImaginativeLab",
+    desc: "???",
+    tags: ["Coming soon"],
+    year: "Soon",
   },
 ];
 
@@ -322,6 +338,26 @@ export const STACK: StackGroup[] = [
   { group: "Web", items: ["Next.js", "React", "Tailwind CSS", "Node.js"] },
   { group: "Apple", items: ["SwiftUI", "Swift Playgrounds", "Xcode"] },
   { group: "Tooling", items: ["Linux", "Docker", "Git", "nginx"] },
+];
+
+export type Post = {
+  slug: string;
+  title: string;
+  /** Used on the index, in search results and as the page description. */
+  desc: string;
+  /** ISO date, so the feed and sitemap can sort without re-parsing the label. */
+  date: string;
+  dateLabel: string;
+};
+
+export const POSTS: Post[] = [
+  {
+    slug: "apple-park",
+    title: "Distinguished Winner experience at Apple Park",
+    desc: "Three days at Apple Park as one of fifty Swift Student Challenge Distinguished Winners: meeting Tim Cook, the WWDC26 keynote, and a room full of Apple engineers.",
+    date: "2026-06-09",
+    dateLabel: "June 2026",
+  },
 ];
 
 export const PAPER = {

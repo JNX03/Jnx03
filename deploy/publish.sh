@@ -35,7 +35,7 @@ tar -czf - -C out . | ssh "$USER@$HOST" "
 "
 
 echo "==> Verifying"
-for p in / /works /awards /research /about /stack /contact /sitemap.xml; do
+for p in / /works /awards /research /blog /blog/apple-park /about /stack /contact /sitemap.xml; do
   code=$(curl -s -o /dev/null -w '%{http_code}' --resolve "jnx03.xyz:443:$HOST" "https://jnx03.xyz$p" || echo 000)
   printf '  %-14s %s\n' "$p" "$code"
 done

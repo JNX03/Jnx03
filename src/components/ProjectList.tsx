@@ -35,7 +35,7 @@ function ProjectRow({ project, priority }: { project: Project; priority: boolean
         <div className="project-row-media">
           <Image
             src={project.shot}
-            alt=""
+            alt={project.alt ?? ""}
             fill
             sizes="(min-width: 640px) 320px, 45vw"
             priority={priority}
