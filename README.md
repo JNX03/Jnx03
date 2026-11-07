@@ -29,6 +29,12 @@ const jean = {
 };
 ```
 ---
+## ⌁ Student resources
+
+- [Business case competitions: a beginner’s guide](https://dekport.com/articles/business-case-competition-beginners)
+- [Project competitions: proposal and evidence checklist](https://dekport.com/articles/project-competition-proposal-checklist)
+- [Competition planning workbook](https://dekport.com/resources/competition-workbook)
+
 ## ⌁ Find Me
 
 <div align="center">
