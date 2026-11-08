@@ -25,8 +25,9 @@ export default function Works() {
         <h2 id="dekport-student-resources" className="ft">Student resources from DekPort</h2>
         <p>
           Free Thai-language worksheets and guides from the DekPort editorial team,
-          for students preparing competition submissions. Start with the editable,
-          printable workbook, then explore the guides for business cases and project files.
+          for students preparing for activities, online camps and competitions.
+          Start with the editable, printable workbook, or explore practical guides
+          for business cases, project files, hands-on online sessions and short videos.
         </p>
         <ul className="stack-sm">
           <li>
@@ -42,6 +43,16 @@ export default function Works() {
           <li>
             <a className="tu" href="https://dekport.com/articles/project-competition-proposal-checklist" target="_blank" rel="noreferrer">
               Project proposal and submission checklist (Thai)
+            </a>
+          </li>
+          <li>
+            <a className="tu" href="https://dekport.com/articles/online-camp-hands-on-preparation" target="_blank" rel="noreferrer">
+              Hands-on online camp preparation (Thai)
+            </a>
+          </li>
+          <li>
+            <a className="tu" href="https://dekport.com/articles/short-video-contest-production-checklist" target="_blank" rel="noreferrer">
+              Short-video contest production checklist (Thai)
             </a>
           </li>
         </ul>
